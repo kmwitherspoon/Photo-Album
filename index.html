@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="styles.css" media="screen" title="no title" charset="utf-8">
+    <script type="text/html" id="photoTmpl">
+    <article class="jqPhoto" data-index="">
+      <a href="#"><img src="<%= imgURL %>">
+      <p class="description"><%= description %></p></a>
+    </article>
+  </script>
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <div class="h1-album">
+          <h1>My Albums</h1>
+        </div>
+      </header>
+      <div class="myAlbums">
+        <ul class="first-nav">;
+          <li><a href="" rel="album1"></a></li>;
+          <li><a href="" rel="album2"></a></li>;
+          <li><a href="" rel="album3"></a></li>;
+          <li><a href="" rel="album4"></a></li>;
+          <li><a href="" rel="album5"></a></li>;
+          <li><a href="" rel="album6"></a></li>;
+      </div>
+    <div class="allAlbums">
+      <div class="albumPage albumPage1">
+
+      </div>
+      <div class="albumPage albumPage2">
+
+      </div>
+      <div class="albumPage albumPage3">
+
+      </div>
+      <div class="albumPage albumPage4">
+
+      </div>
+      <div class="albumPage albumPage5">
+
+      </div>
+      <div class="albumPage albumPage6">
+
+      </div>
+    </div>
+      <section class="sidebar">
+        <nav>
+          <ul class="second-nav">
+            <li><a href="" rel="album1"></a></li>;
+            <li><a href="" rel="album2"></a></li>;
+            <li><a href="" rel="album3"></a></li>;
+            <li><a href="" rel="album4"></a></li>;
+            <li><a href="" rel="album5"></a></li>;
+            <li><a href="" rel="album6"></a></li>;
+          </ul>
+        </nav>
+      </section>
+    <script src="bower_components/jquery/dist/jquery.js" charset="utf-8"></script>
+    <script src="bower_components/underscore/underscore.js" charset="utf-8"></script>
+    <script src="data.js" charset="utf-8"></script>
+    <script src="photo-album.js" charset="utf-8"></script>
+  </body>
+</html>
