@@ -1,136 +1,111 @@
-
-
 $(document).ready(function () {
+
+  photoAlbumPage.init();
   // anything in here is dom ready!
-var albumTemplate = _.template($('#photoTmpl').html());
-var obj = _.groupBy(photos, 'album');
-var keys = Object.keys(obj);
- var keysToLife = keys.map(function(el) {
-  return el.images[0];
-});
-
-var newHtmlString = "";
-var lifeStillSucks = _.each(keysToLife, function(item){
-  newHtmlString += albumTemplate(item);
-});
-console.log(newHtmlString);
-$('.first-nav').html(newHtmlString);
 
 });
-/*
 
-$('.albumPage1').click(function(event) {
-     event.preventDefault();
-      $('.allpicsview').removeClass("hidden");
-      $('.allcolumns').addClass("hidden");
-      $('.navbar').text("Alaska");
-      $('.navbar').addClass('allpicsstyle');
-      $(".albumPage1").siblings().css("display","none");
+var photoAlbumPage = {
+  init: function(){
+    photoAlbumPage.styling();
+    photoAlbumPage.events();
+  },
+  events: function(){
 
-      var threePicTemplate = _.template($('#threePicTmpl').html());
-      // 1. grab three photos associated with column1
-      var alaskaAlbum = albums.filter(function(el) {
-        return el.albumName === 'Alaska';
-      });
-      // 2. loop through photos, compile template, and add.
-      alaskaAlbum[0].photos.forEach(function(photo, idx) {
-         var newpicstring = "";
+    $('rel').on('click', function (event) {
+          event.preventDefault();
+          var element = this
 
-         newpicstring = threePicTemplate(photo);
-         $(('.pic')+(idx+1)).html(newpicstring);
-      });
-
-      //
     });
 
-$('.albumPage1').click(function(event) {
-event.preventDefault();
- $('.').removeClass("hidden");
- $('.allAlbums').addClass("hidden");
- $(".albumPage1").siblings().css("display","none");
 
-var albumPicsTmpl = _.template($('#photoTmpl').html());
+    $('.jqPhoto').on('click',function(event) {
+      event.preventDefault();
+      console.log(this);
+      var albumName = $(this).data('album-name');
+      otherEl = photos.filter(function(el) {
+        return el.name === albumName
+      });
 
-var album1 = photos.filter(function(el) {
-return el.album1 === 'album1';
-});
+      console.log(otherEl);
+      var photosTemplate = _.template($('#threePicTmpl').html());
+      var pictureHTML = photosTemplate(otherEl[0]);
+      $('.jqPhoto').css('display', 'none');
+      $('.myAlbums').css('padding', '0');
+      $('.sidebar').css('display', 'block');
+      $('.allAlbums').html(pictureHTML).css('display', 'inline-block');
+    })
 
-album1[0].image.forEach(function(images, idx) {
-var newpicstring = "";
+    $('.jqPhotos img').on('click', function(event){
+      event.preventDefault();
+      var animWidth = this;
+    if(this.hasClass('wide') ){
+        animWidth=159;
+    }else{
+        animWidth=593;
+    }
+    $(this).toggleClass('wide').animate({width: animWidth}, "slow");
+    });
 
-newpicstring = albumPicsTmpl(images);
-$(('.albumPage1')+(idx+1)).html(newpicstring);
-});
+    $('.second-nav a').on('click', function(event) {
+      event.preventDefault();
+      var albumName = $(this).data('album-name');
+      otherEl = photos.filter(function(el) {
+        return el.name === albumName
+      });
+      var sidebarTemplate = _.template($('#sidebarNav').html());
+      var sidebarHTML = sidebarTemplate(otherEl[0]);
+      $('.sidebar').prepend(sidebarTemplate).css('display', 'block');
+      $('.myAlbums').css('display','inline-block');
+    })
 
-});
 
-var albumPicsTmpl = _.template($('#photoTmpl').html());
 
-var album2 = photos.filter(function(el) {
-  return el.album2 === 'album2';
-});
+  },
+  styling: function(){
+    photoAlbumPage.loadAlbums();
+  },
+  loadAlbums: function(){
+    var albumTemplate = _.template($('#photoTmpl').html());
+    var keysToLife = _.map(photos, function(el) {
+     return { photo1: el.photo1, name: el.name };
+    });
 
-album2[0].image.forEach(function(image, idx) {
-   var newpicstring = "";
+    var keyString = "";
+    keysToLife.forEach(function(photo) {
+      keyString += albumTemplate(photo)
+    })
+    $('.first-nav').html(keyString);
+},
+  threePics: function(){
 
-   newpicstring = albumPicsTmpl(image);
-   $(('.albumPage2')+(idx+1)).html(newpicstring);
-});
-
-var albumPicsTmpl = _.template($('#photoTmpl').html());
-
-var album3 = photos.filter(function(el) {
- return el.album3 === 'album3';
-});
-
-album3[0].image.forEach(function(image, idx) {
-  var newpicstring = "";
-
-  newpicstring = albumPicsTmpl(image);
-  $(('.albumPage3')+(idx+1)).html(newpicstring);
-});
-
-var albumPicsTmpl = _.template($('#photoTmpl').html());
-
-  var album4 = photos.filter(function(el) {
-    return el.album4 === 'album4';
+    var photosTemplate = _.template($('#threePicTmpl').html());
+    var alby = $('.jqPhoto').first().data('album-name');
+    photos.filter(function(el) {
+    return el.name === alby;
   });
 
-  album4[0].image.forEach(function(image, idx) {
-     var newpicstring = "";
+  var threeString = "";
+  alby.forEach(function(photo) {
+    threeString += photosTemplate(photo)
+  })
+  $('.jqPhotos').html(threeString);
+},
 
-     newpicstring = albumPicsTmpl(image);
-     $(('.albumPage4')+(idx+1)).html(newpicstring);
-  });
+// click: function(click) {
+//   $('jqPhoto img').on('click', 'a', function(event) {
+//     event.preventDefault();
+//     console.log(this);
+//     globalVar = $(this);
+//     otherEl = photos.filter(function(el) {
+//       return el.name === globalVar
+//     })
+//         });
+//  },
+};
 
-var albumPicsTmpl = _.template($('#photoTmpl').html());
 
-   var album5 = photos.filter(function(el) {
-     return el.album5 === 'album5';
-   });
-
-   album5[0].image.forEach(function(image, idx) {
-      var newpicstring = "";
-
-      newpicstring = albumPicsTmpl(image);
-      $(('.albumPage5')+(idx+1)).html(newpicstring);
-   });
-
-var albumPicsTmpl = _.template($('#photoTmpl').html());
-
-var album6 = photos.filter(function(el) {
-  return el.album6 === 'album6';
-});
-
-album6[0].image.forEach(function(image, idx) {
-   var newpicstring = "";
-
-   newpicstring = albumPicsTmpl(image);
-   $(('.albumPage6')+(idx+1)).html(newpicstring);
-});
-
-});
-
+/*
 
 $('ul a').on('click', function (event) {
     event.preventDefault();

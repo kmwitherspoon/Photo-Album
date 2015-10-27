@@ -4,61 +4,52 @@
     <meta charset="utf-8">
     <title></title>
     <link rel="stylesheet" href="styles.css" media="screen" title="no title" charset="utf-8">
+    <link href='https://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
     <script type="text/html" id="photoTmpl">
-    <article class="jqPhoto" data-index="">
-      <a href="#"><img src="<%= imgURL %>">
-      <p class="description"><%= description %></p></a>
+    <article class="jqPhoto" data-index="" data-album-name="<%= name %>">
+      <a href="#" rel="photos"><img src="<%= photo1 %>">
+      </p></a>
+    </article>
+  </script>
+  <script type="text/html" id="threePicTmpl">
+    <article class="jqPhotos" data-index="" data-album-name="<%= name %>">
+      <a href="#" rel="photo1"><img src="<%= photo1 %>"></a>
+      <a href="#" rel="photo2"><img src="<%= photo2 %>"></a>
+      <a href="#" rel="photo3"><img src="<%= photo3 %>"></a>
+    </article>
+  </script>
+  <script type="text/html" id="sidebarNav">
+    <article class="jqSidebar" data-album-name="<%= name %>">
+      <a href="#"></a>
     </article>
   </script>
   </head>
   <body>
-    <div class="wrapper">
       <header>
         <div class="h1-album">
           <h1>My Albums</h1>
         </div>
       </header>
-      <div class="myAlbums">
-        <ul class="first-nav">;
-          <li><a href="" rel="album1"></a></li>;
-          <li><a href="" rel="album2"></a></li>;
-          <li><a href="" rel="album3"></a></li>;
-          <li><a href="" rel="album4"></a></li>;
-          <li><a href="" rel="album5"></a></li>;
-          <li><a href="" rel="album6"></a></li>;
-      </div>
-    <div class="allAlbums">
-      <div class="albumPage albumPage1">
+      <section class="myAlbums">
+        <ul class="first-nav">
 
-      </div>
-      <div class="albumPage albumPage2">
-
-      </div>
-      <div class="albumPage albumPage3">
-
-      </div>
-      <div class="albumPage albumPage4">
-
-      </div>
-      <div class="albumPage albumPage5">
-
-      </div>
-      <div class="albumPage albumPage6">
-
-      </div>
-    </div>
+        </ul>
+      </section>
       <section class="sidebar">
         <nav>
           <ul class="second-nav">
-            <li><a href="" rel="album1"></a></li>;
-            <li><a href="" rel="album2"></a></li>;
-            <li><a href="" rel="album3"></a></li>;
-            <li><a href="" rel="album4"></a></li>;
-            <li><a href="" rel="album5"></a></li>;
-            <li><a href="" rel="album6"></a></li>;
+            <li><a href="#" rel="album1">Album 1</a></li>
+            <li><a href="#" rel="album2">Album 2</a></li>
+            <li><a href="#" rel="album3">Album 3</a></li>
+            <li><a href="#" rel="album4">Album 4</a></li>
+            <li><a href="#" rel="album5">Album 5</a></li>
+            <li><a href="#" rel="album6">Album 6</a></li>
           </ul>
         </nav>
       </section>
+    <section class="allAlbums">
+
+    </section>
     <script src="bower_components/jquery/dist/jquery.js" charset="utf-8"></script>
     <script src="bower_components/underscore/underscore.js" charset="utf-8"></script>
     <script src="data.js" charset="utf-8"></script>
